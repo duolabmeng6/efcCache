@@ -26,19 +26,18 @@ import efcCache
 from efcCache.providers.FileCache import FileCache
 
 # 创建缓存管理器
-manager = efcCache.CacheManager(default_storage="local")
+cacheManager = efcCache.CacheManager(default_storage="local")
 
 # 设置存储后端
-manager.set_storage("local", FileCache(storage_path="./storage/"))
+cacheManager.set_storage("local", FileCache(storage_path="./storage/"))
 
-# 测试文件缓存
+# 使用缓存类
 print("测试文件缓存:")
-manager.get_storage("local").set("test", "文件缓存测试")
-print(manager.get_storage("local").get("test"))
-print(manager.get_storage("local").exists("test"))
-manager.get_storage("local").delete("test")
-print(manager.get_storage("local").exists("test"))
-
+cacheManager.set("test", "文件缓存测试")
+print(cacheManager.get("test"))
+print(cacheManager.exists("test"))
+cacheManager.delete("test")
+print(cacheManager.exists("test"))
 
 ```
 
