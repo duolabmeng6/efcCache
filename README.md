@@ -23,16 +23,21 @@ pip install efcCache
 
 ```python
 import efcCache
+from efcCache.providers.FileCache import FileCache
+from efcCache.providers.RedisCache import RedisCache
+from efcCache.providers.SQLiteCache import SQLiteCache
+from efcCache.providers.MySQLCache import MySQLCache
+from efcCache.providers.PostgreSQLCache import PostgreSQLCache
 
 # 创建缓存管理器
 manager = efcCache.CacheManager(default_storage="local")
 
 # 设置存储后端
-manager.set_storage("local", efcCache.LocalCache(storage_path="./storage/"))
-manager.set_storage("redis", efcCache.RedisCache(host="localhost", port=6379, db=0))
-manager.set_storage("sqlite", efcCache.SQLiteCache(storage_path="./storage/sqlite.db"))
-manager.set_storage("mysql", efcCache.MySQLCache(connection_string="mysql://root:password@localhost:3306/test", table="cache"))
-manager.set_storage("postgresql", efcCache.PostgreSQLCache(connection_string="postgresql://postgres:password@localhost:5432/test", table="cache"))
+manager.set_storage("local", FileCache(storage_path="./storage/"))
+manager.set_storage("redis", RedisCache(host="localhost", port=6379, db=0))
+manager.set_storage("sqlite", SQLiteCache(storage_path="./storage/sqlite.db"))
+manager.set_storage("mysql", MySQLCache(connection_string="mysql://root:password@localhost:3306/test", table="cache"))
+manager.set_storage("postgresql", PostgreSQLCache(connection_string="postgresql://postgres:password@localhost:5432/test", table="cache"))
 
 # 使用示例
 manager.set("key", "value")

@@ -1,15 +1,15 @@
+from .Manager import CacheManager
+from .providers.FileCache import FileCache
 # from .providers.SQLiteCache import SQLiteCache
 # from .providers.RedisCache import RedisCache
 # from .providers.MySQLCache import MySQLCache
 # from .providers.PostgreSQLCache import PostgreSQLCache
-# # ... 其他导入 ...
 
-# __all__ = [
-#     "CacheManager",
-#     "LocalCache",
-#     "RedisCache",
-#     "SQLiteCache",
-#     "MySQLCache",
-#     "PostgreSQLCache",
-#     # ... 其他类 ...
-# ]
+__all__ = [
+    "CacheManager",
+    "FileCache",
+    # "RedisCache",
+    # "SQLiteCache",
+    # "MySQLCache",
+    # "PostgreSQLCache",
+]
