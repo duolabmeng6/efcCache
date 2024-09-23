@@ -1,0 +1,4 @@
+oss2
+qiniu
+boto3
+requests
