@@ -1,50 +1,3 @@
-# efcCache
-
-efcCache 是一个通用的缓存类库,支持多种存储后端,包括:
-
-- 本地文件
-- SQLite
-- MySQL
-- PostgreSQL
-- Redis
-
-
-## 安装
-
-使用 pip 安装 efcCache:
-
-```bash
-pip install efcCache
-```
-
-## 快速开始
-
-以下是一个使用 efcCache 的简单示例:
-
-```python
-import efcCache
-from efcCache.providers.FileCache import FileCache
-
-# 创建缓存管理器
-manager = efcCache.CacheManager(default_storage="local")
-
-# 设置存储后端
-manager.set_storage("local", FileCache(storage_path="./storage/"))
-
-# 测试文件缓存
-print("测试文件缓存:")
-manager.get_storage("local").set("test", "文件缓存测试")
-print(manager.get_storage("local").get("test"))
-print(manager.get_storage("local").exists("test"))
-manager.get_storage("local").delete("test")
-print(manager.get_storage("local").exists("test"))
-
-
-```
-
-
-引入其他缓存器
-```python
 import efcCache
 from efcCache.providers.FileCache import FileCache
 from efcCache.providers.SQLiteCache import SQLiteCache
@@ -119,14 +72,3 @@ print(manager.exists("default_test"))
 manager.delete("default_test")
 print(manager.exists("default_test"))
 
-
-
-```
-
-## 贡献
-
-欢迎贡献代码、报告问题或提出改进建议。请查看我们的[贡献指南](CONTRIBUTING.md)了解更多信息。
-
-## 许可证
-
-efcCache 使用 MIT 许可证。详情请见 [LICENSE](LICENSE) 文件。
