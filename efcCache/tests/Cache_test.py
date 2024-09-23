@@ -4,6 +4,8 @@ from efcCache.Manager import CacheManager
 from efcCache.providers.SQLiteCache import SQLiteCache
 from efcCache.providers.RedisCache import RedisCache
 from efcCache.providers.MySQLCache import MySQLCache
+from efcCache.providers.PostgreSQLCache import PostgreSQLCache
+
 
 
 class Test缓存(unittest.TestCase):
@@ -90,6 +92,32 @@ class Test缓存(unittest.TestCase):
         storage = MySQLCache("mysql://root:@localhost:3306/test")
         manager = CacheManager(default_storage="mysql")
         manager.set_storage("mysql", storage)
+        
+        # 测试设置和获取缓存
+        manager.set("key", "value")
+        self.assertEqual(manager.get("key"), "value")
+        
+        # 测试缓存是否存在
+        self.assertTrue(manager.exists("key"))
+        
+        # 测试删除缓存
+        manager.delete("key")
+        self.assertFalse(manager.exists("key"))
+        
+        # 测试过期时间
+        manager.set("expire_test", "过期测试", expire=1)
+        self.assertEqual(manager.get("expire_test"), "过期测试")
+        import time
+        time.sleep(2)
+        self.assertIsNone(manager.get("expire_test"))
+        
+        # 测试不存在的键
+        self.assertIsNone(manager.get("不存在的键"))
+
+    def test_postgresql缓存(self):
+        storage = PostgreSQLCache("postgresql://postgres:@localhost:5432/test")
+        manager = CacheManager(default_storage="postgresql")
+        manager.set_storage("postgresql", storage)
         
         # 测试设置和获取缓存
         manager.set("key", "value")

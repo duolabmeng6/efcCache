@@ -1,2 +1,3 @@
-redis
-mysql-connector-python
+#redis
+#mysql-connector-python
+#psycopg2-binary
