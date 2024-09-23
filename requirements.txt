@@ -1,4 +1,2 @@
-oss2
-qiniu
-boto3
-requests
+redis
+mysql-connector-python

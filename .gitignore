@@ -12,3 +12,5 @@ __pycache__
 .idea
 .DS_Store
 /efcCache.egg-info
+identifier.sqlite
+/efcCache/tests/storage
